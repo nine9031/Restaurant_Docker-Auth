@@ -11,13 +11,12 @@ const Restaurants = ({ restaurants }) => {
               <Card
                 key={restaurant.id}
                 id={restaurant.id}
-                title={restaurant.title}
+                name={restaurant.name}
                 type={restaurant.type}
-                img={restaurant.img}
+                imageUrl={restaurant.imageUrl}
               />
             );
           })}
-        ;
       </div>
     </div>
   );

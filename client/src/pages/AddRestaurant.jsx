@@ -12,16 +12,19 @@ const AddRestaurant = () => {
   };
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/restaurants/", {
-        method: "POST",
-        body: JSON.stringify(restaurant),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/v1/restaurants/",
+        {
+          method: "POST",
+          body: JSON.stringify(restaurant),
+        }
+      );
       if (response.ok) {
         alert("Restaurant added to successfully!");
         setRestaurants({
-          title: "",
+          name: "",
           type: "",
-          img: "",
+          imageUrl: "",
         });
       }
     } catch (error) {
@@ -32,11 +35,11 @@ const AddRestaurant = () => {
     <div className="container mx-auto flex items-center flex-col">
       <h1 className="text-2xl mt-3">Add New Restaurant</h1>
       <div className="mt-2">
-        <legend className="mt-2">What is your restaurant title?</legend>
+        <legend className="mt-2">What is your restaurant name?</legend>
         <input
           type="text"
-          name="title"
-          value={restaurant.title}
+          name="name"
+          value={restaurant.name}
           className="input"
           placeholder="Type here"
           onChange={handleChange}
@@ -56,12 +59,14 @@ const AddRestaurant = () => {
         />
       </div>
       <div className="mt-2">
-        <legend className="text-center">What is your restaurant img?</legend>
+        <legend className="text-center">
+          What is your restaurant imageUrl?
+        </legend>
         <label className="input">
           <input
             type="text"
-            name="img"
-            value={restaurant.img}
+            name="imageUrl"
+            value={restaurant.imageUrl}
             className="grow"
             placeholder="your img link"
             onChange={handleChange}
@@ -69,9 +74,9 @@ const AddRestaurant = () => {
           <span className="badge badge-neutral badge-xs">*Must Type</span>
         </label>
       </div>
-      {restaurant.img && (
+      {restaurant.imageUrl && (
         <div className="flex items-center gap-2">
-          <img className="h-32" src={restaurant.img}></img>
+          <imageUrl className="h-32" src={restaurant.imageUrl}></imageUrl>
         </div>
       )}
       <div className="mt-3 space-x-2">
