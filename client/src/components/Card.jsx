@@ -7,6 +7,7 @@ const Card = (props) => {
         "http://localhost:5000/api/v1/restaurants/" + id,
         {
           method: "DELETE",
+          headers: { "Content-Type": "application/json" },
         }
       );
       if (response.ok) {
@@ -15,12 +16,12 @@ const Card = (props) => {
       }
     } catch (error) {
       console.log(error);
-    }0
+    }
   };
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>
-        <img src={props.imageUrl} alt="Shoes" />
+        <img src={props.imageUrl} alt="IMAGE" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">

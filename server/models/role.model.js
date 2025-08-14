@@ -1,11 +1,11 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./db.js";
 
-const Role = sequelize.define("Role", {
+const Role = sequelize.define("role", {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
     autoIncrement: true,
+    primaryKey: true,
   },
   name: {
     type: DataTypes.STRING,
@@ -19,7 +19,8 @@ const Role = sequelize.define("Role", {
 //     Role.create({ id: 2, name: "moderator" });
 //     Role.create({ id: 3, name: "admin" });
 //   })
+
 //   .catch((error) => {
-//     console.log("Error creating table", error);
+//     console.log("Error creating role", error);
 //   });
 export default Role;

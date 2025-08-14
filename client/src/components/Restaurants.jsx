@@ -17,6 +17,7 @@ const Restaurants = ({ restaurants }) => {
               />
             );
           })}
+        ;
       </div>
     </div>
   );

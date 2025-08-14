@@ -4,14 +4,9 @@ import sequelize from "./db.js";
 const User = sequelize.define("user", {
   username: {
     type: DataTypes.STRING,
-    allowNull: false,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -19,11 +14,15 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 User.sync({ force: false })
   .then(() => {
-    console.log("Table created or already exists");
+    console.log("Table created or already existed");
   })
   .catch((error) => {
     console.log("Error creating table", error);

@@ -4,7 +4,7 @@ const Navbar = () => {
   const menuItems = [
     {
       name: "Add Restaurant",
-      url: "/NewRestaurant",
+      url: "/newRestaurant",
     },
     {
       name: "About Us",
@@ -36,10 +36,10 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            {menuItems.map((item, i) => {
+            {menuItems.map((item) => {
               return (
-                <li key={i}>
-                  <a href={item.imageUrl}>{item.name}</a>
+                <li>
+                  <a href={item.url}>{item.name}</a>
                 </li>
               );
             })}
@@ -51,18 +51,22 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          {menuItems.map((item, i) => {
+          {menuItems.map((item) => {
             return (
-              <li key={i}>
-                <a href={item.imageUrl}>{item.name}</a>
+              <li>
+                <a href={item.url}>{item.name}</a>
               </li>
             );
           })}
         </ul>
       </div>
       <div className="navbar-end space-x-2">
-        <button className="btn btn-soft btn-primary">Resgister</button>
-        <button className="btn btn-soft btn-success ">Login</button>
+        <a href="/signup" className="btn btn-soft btn-primary">
+          SIGN UP
+        </a>
+        <a href="/signin" className="btn btn-soft btn-success ">
+          SIGN IN
+        </a>
       </div>
     </div>
   );

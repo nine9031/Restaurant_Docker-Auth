@@ -5,9 +5,9 @@ const UpdateRestaurant = () => {
   //1. Get Id from URL
   const { id } = useParams();
   const [restaurant, setRestaurants] = useState({
-    title: "",
+    name: "",
     type: "",
-    img: "",
+    imageUrl: "",
   });
 
   //2. Get Restaurant by ID
@@ -38,15 +38,13 @@ const UpdateRestaurant = () => {
         {
           method: "PUT",
           body: JSON.stringify(restaurant),
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
         }
       );
       if (response.ok) {
         alert("Restaurant had been update!!");
         setRestaurants({
-          name: "",
+          title: "",
           type: "",
           imageUrl: "",
         });
@@ -59,7 +57,7 @@ const UpdateRestaurant = () => {
     <div className="container mx-auto flex items-center flex-col">
       <h1 className="text-2xl mt-3">Update Your Restaurant</h1>
       <div className="mt-2">
-        <legend className="mt-2">What is your restaurant Name?</legend>
+        <legend className="mt-2">What is your restaurant name?</legend>
         <input
           type="text"
           name="name"
@@ -89,10 +87,10 @@ const UpdateRestaurant = () => {
         <label className="input">
           <input
             type="text"
-            name="img"
+            name="imageUrl"
             value={restaurant.imageUrl}
             className="grow"
-            placeholder="your img link"
+            placeholder="your imageUrl link"
             onChange={handleChange}
           />
           <span className="badge badge-neutral badge-xs">*Must Type</span>

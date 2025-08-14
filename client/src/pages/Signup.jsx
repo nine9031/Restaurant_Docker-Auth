@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddRestaurant = () => {
+const Signup = () => {
   const [restaurant, setRestaurants] = useState({
     name: "",
     type: "",
@@ -34,62 +34,61 @@ const AddRestaurant = () => {
   };
   return (
     <div className="container mx-auto flex items-center flex-col">
-      <h1 className="text-2xl mt-3">Add New Restaurant</h1>
+      <h1 className="text-2xl mt-3">NICE TO MEET YOU MY NEW USER</h1>
       <div className="mt-2">
-        <legend className="mt-2">What is your restaurant name?</legend>
+        <legend className="mt-2">USERNAME:</legend>
+        <input
+          type="text"
+          name="username"
+          value={restaurant.username}
+          className="input"
+          placeholder="username"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mt-2">
+        <legend className="mt-2">PASSWORD:</legend>
+        <input
+          type="text"
+          name="password"
+          value={restaurant.password}
+          className="input"
+          placeholder="password"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mt-2">
+        <legend className="mt-2">NAME:</legend>
         <input
           type="text"
           name="name"
           value={restaurant.name}
           className="input"
-          placeholder="Type here"
+          placeholder="name"
           onChange={handleChange}
         />
-      </div>
-      <div className="mt-2">
-        <legend className="text-center mt-2">
-          What is your restaurant type?
-        </legend>
+        <legend className="mt-2">EMAIL:</legend>
         <input
           type="text"
-          name="type"
-          value={restaurant.type}
+          name="email"
+          value={restaurant.email}
           className="input"
-          placeholder="Type here"
+          placeholder="email"
           onChange={handleChange}
         />
       </div>
-      <div className="mt-2">
-        <legend className="text-center">What is your restaurant image?</legend>
-        <label className="input">
-          <input
-            type="text"
-            name="imageUrl"
-            value={restaurant.imageUrl}
-            className="grow"
-            placeholder="your image link"
-            onChange={handleChange}
-          />
-          <span className="badge badge-neutral badge-xs">*Must Type</span>
-        </label>
-      </div>
-      {restaurant.imageUrl && (
-        <div className="flex items-center gap-2">
-          <img className="h-32" src={restaurant.imageUrl}></img>
-        </div>
-      )}
       <div className="mt-3 space-x-2">
         <a
           href="/"
           onClick={handleSubmit}
           className="btn btn-soft btn-success "
         >
-          Add
+          SIGN UP
         </a>
-        <button className="btn btn-soft btn-error">Cancel</button>
+        <button className="btn btn-soft btn-error">CANCEL</button>
       </div>
     </div>
   );
 };
 
-export default AddRestaurant;
+export default Signup;
