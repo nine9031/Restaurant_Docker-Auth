@@ -1,23 +1,26 @@
-import React from "react";
+import React, { use } from "react";
 import Card from "./Card";
-
+import { useAuthContext } from "../context/AuthContext";
 const Restaurants = ({ restaurants }) => {
+  const { user } = useAuthContext();
   return (
     <div className="flex">
       <div className="flex flex-wrap justify-center gap-4">
         {restaurants &&
+          user &&
           restaurants.map((restaurant) => {
             return (
               <Card
                 key={restaurant.id}
                 id={restaurant.id}
-                title={restaurant.title}
+                name={restaurant.name}
                 type={restaurant.type}
-                img={restaurant.img}
+                imageUrl={restaurant.imageUrl}
               />
             );
           })}
-        ;
+        {!user && <div>You don't have permission to acess this content</div>}
+        {!restaurants && <div>No content!</div>}
       </div>
     </div>
   );

@@ -1,10 +1,14 @@
 import React from "react";
+import { useAuthContext } from "../context/AuthContext";
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
+  const { user } = useAuthContext();
   const menuItems = [
     {
       name: "Add Restaurant",
-      url: "/NewRestaurant",
+      url: "/newRestaurant",
+      roles: ["admin", "moderator"],
     },
     {
       name: "About Us",
@@ -32,18 +36,20 @@ const Navbar = () => {
               />{" "}
             </svg>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            {menuItems.map((item) => {
-              return (
-                <li>
-                  <a href={item.url}>{item.name}</a>
-                </li>
-              );
-            })}
-          </ul>
+          {user && user.authorities.includes("ROLES_ADMIN") && (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              {menuItems.map((item) => {
+                return (
+                  <li>
+                    <a href={item.url}>{item.name}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
         <a href="/" className="btn btn-ghost text-xl">
           Grab Restaurant
@@ -61,8 +67,21 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end space-x-2">
-        <button className="btn btn-soft btn-primary">Resgister</button>
-        <button className="btn btn-soft btn-success ">Login</button>
+        {user ? (
+          <div>
+            <UserProfile />
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <a href="/signup" className="btn btn-soft btn-primary">
+              SIGN UP
+            </a>
+            <a href="/signin" className="btn btn-soft btn-success ">
+              SIGN IN
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

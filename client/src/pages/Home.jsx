@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Restaurant from "../components/Restaurants";
+import RestaurantService from "../services/restaurant.service";
+import Swal from "sweetalert2";
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   // const [keyword, setKeyword] = useState("");
@@ -12,29 +14,32 @@ const Home = () => {
     }
     const result = restaurants.filter((restaurant) => {
       return (
-        restaurant.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        restaurant.name.toLowerCase().includes(keyword.toLowerCase()) ||
         restaurant.type.toLowerCase().includes(keyword.toLowerCase())
       );
     });
     setFilteredRestaurants(result);
-    // console.log(result);
   };
   useEffect(() => {
-    //call api: getAllRestaurants
-    fetch("http://localhost:5000/restaurants")
-      .then((res) => {
-        //convert to JSON format
-        return res.json();
-      })
-      //save to state
-      .then((response) => {
-        setRestaurants(response);
-        setFilteredRestaurants(response);
-      })
-      //catch error !!!
-      .catch((err) => {
-        console.log(err.message);
-      });
+    const getAllRestaurants = async () => {
+      try {
+        const response = await RestaurantService.getAllRestaurants();
+        console.log(response);
+        if (response.status === 200) {
+          setRestaurants(response.data);
+          console.log(response.data);
+          setFilteredRestaurants(response.data);
+        }
+      } catch (error) {
+        Swal.fire({
+          title: "Get All restaurant",
+          icon: "error",
+          text: error?.response?.data.message || error.message,
+        });
+      }
+    };
+
+    getAllRestaurants();
   }, []);
   return (
     <div className="container mx-auto ">
