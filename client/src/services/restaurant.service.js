@@ -12,7 +12,7 @@ const getRestaurantById = async (id) => {
 };
 
 //update restaurant by Id
-const editRestaurantByid = async (id, restaurant) => {
+const editRestaurantById = async (id, restaurant) => {
   return await api.put(`${RESTO_API}/${id}`, restaurant);
 };
 
@@ -29,7 +29,7 @@ const deleteRestaurant = async (id) => {
 const RestaurantService = {
   getAllRestaurants,
   getRestaurantById,
-  editRestaurantByid,
+  editRestaurantById,
   deleteRestaurant,
   insertRestaurant,
 };
