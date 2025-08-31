@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import AuthService from "../services/auth.service.js";
+import AuthService from "../services/auth.service";
+import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router";
-import { useAuthContext } from "../context/AuthContext.jsx";
 import Swal from "sweetalert2";
 const Signin = () => {
   const [signin, setSignin] = useState({ username: "", password: "" });
   const navigate = useNavigate();
+
   const { signin: signinFn, user } = useAuthContext();
 
   useEffect(() => {
@@ -13,6 +14,7 @@ const Signin = () => {
       navigate("/");
     }
   }, [user]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
