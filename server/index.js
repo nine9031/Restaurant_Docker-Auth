@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 import restaurantRouter from "./routers/restaurant.router.js";
-import authRouter from "./routers/auth.router.js";
+import authRouter from "./routers/auth.routers.js";
 const FRONTEND_URL = process.env.FRONTEND_URL;
 dotenv.config();
 const PORT = process.env.PORT || 3000;
