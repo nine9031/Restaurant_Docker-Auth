@@ -6,8 +6,13 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   port: dbConfig.PORT,
   dialect: dbConfig.dialect,
   logging: false,
+  dialectOptions: {
+    ssl: {
+      required: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
-
 const testConnection = async () => {
   try {
     await sequelize.authenticate();
